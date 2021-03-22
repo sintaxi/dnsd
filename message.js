@@ -102,8 +102,14 @@ DNSMessage.prototype.parse = function(body) {
     var count = parse.record_count(body, section)
     if(count) {
       self[section] = []
-      for(var i = 0; i < count; i++)
-        self[section].push(new DNSRecord(body, section, i, sections_cache))
+      for(var i = 0; i < count; i++){
+        try{
+          self[section].push(new DNSRecord(body, section, i, sections_cache))
+        }catch(e){
+          console.log("MALFORMED REQUEST:")
+          console.log(e)
+        }
+      }
     }
   })
 }
