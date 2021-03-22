@@ -130,6 +130,8 @@ Server.prototype.on_tcp_connection = function(connection) {
   connection.type = 'tcp'
   connection.server = self
 
+  connection.on('error', function(er) { self.emit('error', er) })
+
   connection.on('data', function(data) {
     bufs.push(data)
     var bytes_received = bufs.reduce(function(state, buf) { return state + buf.length }, 0)
