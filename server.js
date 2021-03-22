@@ -226,10 +226,15 @@ Response.prototype.end = function(value) {
     var length = data.length
     data = Buffer.concat([ new Buffer([length >> 8, length & 255]), data ])
 
-    self.connection.end(data, function(er) {
-      if(er)
-        self.emit('error', er)
-    })
+    if (self.connection._readableState.ended && self.connection._writableState.ended){
+      self.connection.end()
+    }else{
+      self.connection.end(data, function(er) {
+        if(er)
+          self.emit('error', er)
+      })
+    }
+      
   }
 
   else
