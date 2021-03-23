@@ -1,6 +1,6 @@
 {
   "name": "@sintaxi/dnsd",
-  "version": "0.9.9",
+  "version": "0.9.10",
   "description": "Dynamic authoritative name server for Iris services",
   "keywords": [
     "dns",
@@ -18,11 +18,10 @@
   },
   "main": "./named.js",
   "dependencies": {
-    "optimist": "~0.3.4",
     "defaultable": "~0.7.2"
   },
   "devDependencies": {
-    "tap": "~0.2.5"
+    "tap": "^14.11.0"
   },
   "scripts": {
     "test": "tap test/*.js"
