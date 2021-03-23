@@ -106,8 +106,7 @@ DNSMessage.prototype.parse = function(body) {
         try{
           self[section].push(new DNSRecord(body, section, i, sections_cache))
         }catch(e){
-          console.log("MALFORMED REQUEST:")
-          console.log(e)
+          // console.log(e)
         }
       }
     }
