@@ -96,21 +96,25 @@ DNSMessage.prototype.parse = function(body) {
   self.authenticated       = !! parse.ad(body)
   self.checking_disabled   = !! parse.cd(body)
 
-  var sections_cache = parse.sections(body)
-
-  SECTIONS.forEach(function(section) {
-    var count = parse.record_count(body, section)
-    if(count) {
-      self[section] = []
-      for(var i = 0; i < count; i++){
-        try{
-          self[section].push(new DNSRecord(body, section, i, sections_cache))
-        }catch(e){
-          // console.log(e)
+  try {
+    var sections_cache = parse.sections(body)
+    SECTIONS.forEach(function(section) {
+      var count = parse.record_count(body, section)
+      if(count) {
+        self[section] = []
+        for(var i = 0; i < count; i++){
+          try{
+            self[section].push(new DNSRecord(body, section, i, sections_cache))
+          }catch(e){
+            console.log("ERROR: MALFORMED REQUEST")
+          }
         }
       }
-    }
-  })
+    })  
+  }catch(e){
+    console.log("ERROR: OUT OF RANGE")
+  }
+  
 }
 
 DNSMessage.prototype.toBinary = function() {
