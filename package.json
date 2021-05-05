@@ -24,6 +24,7 @@
     "tap": "^14.11.0"
   },
   "scripts": {
-    "test": "tap test/*.js"
+    "test": "tap test/*.js",
+    "pub": "npm publish --access public"
   }
 }
