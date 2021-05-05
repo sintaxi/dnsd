@@ -1,6 +1,6 @@
 {
   "name": "@sintaxi/dnsd",
-  "version": "0.9.11",
+  "version": "0.9.12",
   "description": "Dynamic authoritative name server for Iris services",
   "keywords": [
     "dns",
